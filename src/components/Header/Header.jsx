@@ -16,6 +16,13 @@ function Header() {
                   <Logo />
                </div>
                <ul className="flex gap-x-4 w-fit ">
+                  <div className="border w-64 rounded-md h-8 mx-4">
+                     <input
+                        type="text"
+                        className="w-60 border-none bg-transparent outline-none pl-3 h-7 font-light font-Inter  text-sm"
+                        placeholder="Search"
+                     />
+                  </div>
                   {linkTab.map((item) =>
                      item.active ? (
                         <li

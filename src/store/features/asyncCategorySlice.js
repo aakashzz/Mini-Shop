@@ -8,7 +8,7 @@ const initialState = {
 };
 
 export const fetchDataAsync = createAsyncThunk("fetch/data", async () => {
-   const dataResponse = await api.get("/category/mens-watches?limit=5");
+   const dataResponse = await api.get("/products/category/fragrances?limit=5");
    console.log(dataResponse.data.products)
    return dataResponse.data.products;
 });
@@ -16,8 +16,10 @@ export const fetchDataAsync = createAsyncThunk("fetch/data", async () => {
 const categorySlice = createSlice({
    name: "category",
    initialState,
-   reducers: {},
-   extraReducers: (builder) => {
+   reducers: {
+   
+   },
+   extraReducers: (builder) => { 
       builder
          .addCase(fetchDataAsync.pending, (state) => {
             state.loading = true;
@@ -31,7 +33,7 @@ const categorySlice = createSlice({
          .addCase(fetchDataAsync.rejected, (state, action) => {
             state.loading = false;
             state.error = action.error.message;
-         });
+         })
    },
 });
 

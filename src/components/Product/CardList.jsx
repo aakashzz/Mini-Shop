@@ -25,10 +25,10 @@ function CardList() {
    return (
       <>
          <div className="h-full bg-gray-100/60 rounded p-3">
-            <div className="font-Inter px-1 pb-4">
-               <h2 className="text-xl font-semibold">Laptops Category</h2>
+            <div className=" pl-7 py-2 text-center">
+               <h2 className="text-2xl font-light font-Inter">Top Selling Fragrances</h2>
             </div>
-            <div className="flex flex-wrap justify-around">
+            <div className="flex flex-wrap justify-around py-2">
                {data.map((data) => {
                   return (
                      <Card
