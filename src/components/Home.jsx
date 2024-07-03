@@ -2,15 +2,15 @@ import React, { useState, useEffect } from "react";
 import CardList from "./Product/CardList";
 import Container from "./container/Container";
 import category from "../service/category/categoryApi";
-import { useDispatch } from "react-redux";
+import { useDispatch} from "react-redux";
 import {
    showCategory,
    emptyCategory,
-} from "../store/features/asyncSelectCAtegorySlice";
-
+} from "../store/features/selectCategorySlice";
+import AllProducts from "./Product/AllProducts";
+import SearchResult from "./Search/SearchResult";
 
 function Home() {
-   const dispatch = useDispatch();
    const categoryList = [
       "Beauty",
       "Fragrances",
@@ -27,13 +27,14 @@ function Home() {
       "Sunglasses",
       "Tablets",
    ];
+   const dispatch = useDispatch();
 
    function clickValue(e) {
       const value = e.target.innerText;
       category
          .selectedCategory(value)
          .then((data) => dispatch(showCategory(data)))
-         .catch(() => emptyCategory());
+         .catch(emptyCategory());   
    }
 
    return (
@@ -58,12 +59,11 @@ function Home() {
             <div className="py-5">
                <CardList />
             </div>
-            <div className="bg-gray-100 h-full w-full py-3 px-3">
-               <h2 className="font-Inter font-light text-3xl ">All Products</h2>
-               <div className=" grid grid-cols-5 ">
-                  
-               </div>
+            <div>
+               {/* <AllProducts /> */}
+               <SearchResult />
             </div>
+            
          </Container>
       </main>
    );

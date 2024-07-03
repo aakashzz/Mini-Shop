@@ -8,7 +8,7 @@ const initialState = {
 };
 
 export const fetchDataAsync = createAsyncThunk("fetch/data", async () => {
-   const dataResponse = await api.get("/products/category/fragrances?limit=5");
+   const dataResponse = await api.get("/products/category/tops?limit=5");
    console.log(dataResponse.data.products)
    return dataResponse.data.products;
 });
