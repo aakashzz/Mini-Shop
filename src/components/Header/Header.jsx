@@ -1,17 +1,25 @@
 import Logo from "../Logo";
-// import { NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import products from "../../service/products/productsApi";
 import { useRef, useState } from "react";
-import { useDispatch } from "react-redux";
+
 import {
    fetchDataProducts,
    emptyDataProducts,
 } from "../../store/features/inputProductsSlice";
 
+import Container from "../container/Container";
+import category from "../../service/category/categoryApi";
+import { useDispatch } from "react-redux";
+import {
+   showCategory,
+   emptyCategory,
+} from "../../store/features/selectCategorySlice";
+
 function Header() {
    let linkTab = [
       { name: "Home", direction: "/", active: true },
-      { name: "Product", direction: "/product", active: true },
+      // { name: "Product", direction: "/product", active: true },
       { name: "About", direction: "/about", active: true },
       { name: "Contact", direction: "/contact", active: true },
    ];
@@ -21,10 +29,38 @@ function Header() {
       const inputValue = value.current.value;
       products
          .inputProduct(inputValue)
-         .then((data) => dispatch(fetchDataProducts(data)))
-         .catch(emptyDataProducts());
+         .then((data) =>
+            data
+               ? dispatch(fetchDataProducts(data))
+               : dispatch(emptyDataProducts("Product Is Not Found"))
+         );
+   }
+   const categoryList = [
+      "Beauty",
+      "Fragrances",
+      "Furniture",
+      "Groceries",
+      "Home-decoration",
+      "Laptops",
+      "Mens-shirts",
+      "Mens-shoes",
+      "Mens-watches",
+      "Motorcycle",
+      "Skin-care",
+      "Smartphones",
+      "Sunglasses",
+      "Tablets",
+   ];
+
+   function clickValue(e) {
+      const value = e.target.innerText;
+      category
+         .selectedCategory(value)
+         .then((data) => dispatch(showCategory(data)))
+         .catch(emptyCategory());
    }
    return (
+      <>
       <header className="bg-white h-16 w-full shadow ">
          <nav className="lg:flex ">
             <div className="flex items-center w-full justify-around">
@@ -48,11 +84,14 @@ function Header() {
                   </div>
                   {linkTab.map((item) =>
                      item.active ? (
-                        <li
-                           key={item.name}
-                           className="w-fit font-Inter font-light text-lg"
-                        >
-                           {item.name}
+                        <li>
+                           <NavLink
+                              key={item.name}
+                              to={item.direction}
+                              className="w-fit font-Inter font-light text-lg"
+                           >
+                              {item.name}
+                           </NavLink>
                         </li>
                      ) : null
                   )}
@@ -60,6 +99,28 @@ function Header() {
             </div>
          </nav>
       </header>
+         <div className="py-4">
+            <div className="  text-red-500 ">
+               <Container>
+                  <ul className=" flex gap-x-2 justify-center">
+                     {categoryList.map((item) => {
+                        return (
+                           <NavLink
+                              to={"/category"}
+                              key={item}
+                              value={item}
+                              onClick={clickValue}
+                              className="font-Inter text-[13px] cursor-pointer rounded-sm border-red-200 border p-1 font-medium hover:bg-red-500 hover:text-white duration-200 "
+                           >
+                              {item}
+                           </NavLink>
+                        );
+                     })}
+                  </ul>
+               </Container>
+            </div>
+         </div>
+      </>
    );
 }
 

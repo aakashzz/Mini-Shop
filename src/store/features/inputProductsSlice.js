@@ -13,12 +13,12 @@ const inputSlice = createSlice({
         fetchDataProducts: (state, action) => {
             state.loading = false,
             state.data = action.payload;
-            state.error = '';
+            
         },
-        emptyDataProducts: (state) =>{
+        emptyDataProducts: (state,action) =>{
             state.loading = true,
             state.data = [];
-            state.error= "Product Not Fount"
+            
         }
     }
 })
