@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,memo } from "react";
 import Card from "./Card";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchDataAsync } from "../../store/features/asyncCategorySlice";
-
 function CardList() {
    const dispatch = useDispatch();
    const { data, loading, error } = useSelector((state) => state.category);
@@ -27,11 +26,13 @@ function CardList() {
          <div className="h-full bg-gray-100/60 rounded p-3">
             <div className=" pl-7 py-2 ">
                <h2 className="text-2xl font-light font-Inter">Top Selling Tops</h2>
+               
             </div>
             <div className="flex flex-wrap justify-around py-2">
                {data.map((data) => {
                   return (
                      <Card
+                     data={data}
                         key={data.id}
                         img={data.thumbnail}
                         title={data.title}

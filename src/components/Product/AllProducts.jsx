@@ -12,7 +12,7 @@ function AllProducts() {
     }, [dispatch]);
 
     if (loading) {
-        return
+         return
     }
   return (
     <div className="bg-gray-100 h-full w-full py-3 px-3">
@@ -24,6 +24,7 @@ function AllProducts() {
                         img={data.thumbnail}
                         title={data.title}
                         price={data.price}
+                        data={data}
                      />;
                   })}
                </div>

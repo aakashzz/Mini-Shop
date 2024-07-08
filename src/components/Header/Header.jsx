@@ -2,26 +2,20 @@ import Logo from "../Logo";
 import { NavLink } from "react-router-dom";
 import products from "../../service/products/productsApi";
 import { useRef, useState } from "react";
-
-import {
-   fetchDataProducts,
-   emptyDataProducts,
-} from "../../store/features/inputProductsSlice";
-
+import { fetchDataProducts, emptyDataProducts} from "../../store/features/inputProductsSlice";
 import Container from "../container/Container";
 import category from "../../service/category/categoryApi";
 import { useDispatch } from "react-redux";
-import {
-   showCategory,
-   emptyCategory,
-} from "../../store/features/selectCategorySlice";
+import { showCategory, emptyCategory} from "../../store/features/selectCategorySlice";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
+   const navigate = useNavigate()
    let linkTab = [
       { name: "Home", direction: "/", active: true },
       // { name: "Product", direction: "/product", active: true },
-      { name: "About", direction: "/about", active: true },
-      { name: "Contact", direction: "/contact", active: true },
+      { name: "Card", direction: "/product", active: true },
+      { name: "Order", direction: "/order", active: true },
    ];
    const value = useRef();
    const dispatch = useDispatch();
@@ -33,7 +27,8 @@ function Header() {
             data
                ? dispatch(fetchDataProducts(data))
                : dispatch(emptyDataProducts("Product Is Not Found"))
-         );
+            );
+            navigate('/search?')
    }
    const categoryList = [
       "Beauty",
@@ -79,7 +74,7 @@ function Header() {
                         onClick={dataSubmit}
                         className="text-sm pl-1 font-Inter border-none outline-none text-gray-500"
                      >
-                        Ok
+                        OK
                      </button>
                   </div>
                   {linkTab.map((item) =>
@@ -106,7 +101,7 @@ function Header() {
                      {categoryList.map((item) => {
                         return (
                            <NavLink
-                              to={"/category"}
+                           to={"/category"}
                               key={item}
                               value={item}
                               onClick={clickValue}

@@ -48,6 +48,14 @@ function Footer() {
                               className="font-medium text-gray-600 hover:text-gray-700"
                               href="#"
                            >
+                              About Us
+                           </a>
+                        </li>
+                        <li className="p-5">
+                           <a
+                              className="font-medium text-gray-600 hover:text-gray-700"
+                              href="#"
+                           >
                               Contact Us
                            </a>
                         </li>

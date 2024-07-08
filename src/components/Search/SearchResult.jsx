@@ -4,6 +4,7 @@ import SearchResultCard from "./SearchResultCard";
 
 
 function SearchResult() {
+   
   
    const { data, loading } = useSelector((state) => state.input);
 
@@ -14,7 +15,7 @@ function SearchResult() {
          </p>
       );
    }
-
+  
     
    return (
       <div className="grid grid-cols-4 space-x-3  rounded ">
@@ -66,6 +67,7 @@ function SearchResult() {
                data.map((value) => {
                   return (
                      <SearchResultCard
+                        data={value}
                         title={value.title}
                         key={value.id}
                         img={value.thumbnail}
@@ -85,4 +87,4 @@ function SearchResult() {
    );
 }
 
-export default SearchResult;
+export default SearchResult

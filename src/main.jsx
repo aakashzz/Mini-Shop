@@ -8,7 +8,9 @@ import store from "./store/store.js";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./components/Home.jsx";
 import Category from "./components/Category/Category.jsx";
-
+import SearchResult from './components/Search/SearchResult.jsx'
+import ProductDetailsCard from "./components/Products Details/ProductDetailsCard.jsx";
+import ProductMainDetails from "./components/Products Details/ProductMainDetails.jsx";
 
 const router = createBrowserRouter([
    {
@@ -22,7 +24,16 @@ const router = createBrowserRouter([
            {
                path:"/category",
                element:<Category />
+           },
+           {
+                path:'/search?',
+                element: <SearchResult />
+           },
+           {
+                path:"/product",
+                element: <ProductMainDetails />
            }
+          
           
        ]
    }
